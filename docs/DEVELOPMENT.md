@@ -1,5 +1,7 @@
 # 4FusionLab add-in development
 
+[Русская версия](DEVELOPMENT.ru.md)
+
 ## Architecture
 
 - `<Product>/<Product>.py`: Autodesk Fusion entry point, command and event lifecycle. This module imports `adsk`, so **do not import it in offline unit tests**.
