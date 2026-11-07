@@ -1,6 +1,7 @@
 """Validate the initialized Fusion add-in and its release configuration."""
 
 import argparse
+import ast
 import json
 from pathlib import Path
 import re
@@ -35,8 +36,16 @@ def validate(root=ROOT, allow_template=False):
     if manifest.get('description', {}).get('') != metadata['description']:
         raise ValueError('Manifest description must match project metadata.')
     config = (package / 'config.py').read_text(encoding='utf-8')
-    if 'import adsk' in (package / 'core.py').read_text(encoding='utf-8'):
-        raise ValueError('The testable domain core must not import Fusion APIs.')
+    pure_code = ast.parse((package / 'core.py').read_text(encoding='utf-8'))
+    for node in ast.walk(pure_code):
+        if isinstance(node, ast.Import) and any(
+            alias.name == 'adsk' or alias.name.startswith('adsk.') for alias in node.names
+        ):
+            raise ValueError('The testable domain core must not import Fusion APIs.')
+        if isinstance(node, ast.ImportFrom) and node.module and (
+            node.module == 'adsk' or node.module.startswith('adsk.')
+        ):
+            raise ValueError('The testable domain core must not import Fusion APIs.')
     if 'INITIALIZED = ' + str(initialized) not in config:
         raise ValueError('Fusion runtime initialization flag differs from metadata.')
     if 'ADDIN_NAME = ' + repr(name) not in config:
