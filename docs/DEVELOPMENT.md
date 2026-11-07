@@ -52,5 +52,5 @@ An uninitialized source template may be tested using `--allow-template` but **ca
 
 The shared Actions are pinned to 4FusionLab/.github commit `ad9d60ba4aabc494b4f2c85d6c566a50ca423751`. The org's [RELEASE_PLATFORM.md](https://github.com/4FusionLab/.github/blob/main/RELEASE_PLATFORM.md) is authoritative. Product code changes are eligible when their filenames match `.github/release-paths.txt`; all required cross-platform tests and ZIP validation must pass before publication.
 
-After a project is created, choose and review its distribution/license strategy. The starting template includes GPL-3.0-only to align with existing 4FusionLab open-source add-ins; different commercial licensing requires a deliberate legal/product decision **before** distributing code or binaries.
+After a project is created, choose and review its distribution/license strategy. The template does not impose a default project license. Before distributing code or binaries, explicitly choose a license compatible with your product strategy (for example, GPL-3.0 for reciprocal open source, MIT for permissive open source, or an appropriate proprietary license for commercial distribution). See [licensing guide](LICENSING.md).
 
