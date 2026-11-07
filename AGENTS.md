@@ -5,7 +5,8 @@ Read [4FusionLab shared engineering rules](https://github.com/4FusionLab/.github
 ## Working model
 
 - This is an Autodesk Fusion Python add-in. The initial package is `FusionAddin/`; the initializer replaces its name and generates stable IDs.
-- Discuss requirements and plans in Russian. Use clear English for Fusion commands, controls, diagnostics, and stable API names. Maintain separate English and Russian README files.
+- Discuss requirements and plans in Russian. Use clear English for Fusion commands, controls, diagnostics, and stable API names. Write documents in English and maintain separate Russian versions of documentation; intermediate working notes do not require translation.
+- For README creation or edits, apply the [shared product README guidelines](https://github.com/4FusionLab/.github/blob/main/README_GUIDELINES.md). Check both languages, current release and license terms, and actual validation evidence before delivery.
 - Treat the official Autodesk Fusion API documentation as the source of truth. Never invent SDK symbols; do not imply successful CAD acceptance based solely on offline CI.
 - Put calculations and domain rules into `FusionAddin/core.py` or modules that **do not import adsk**. Fusion API interactions belong in adapters, event handlers and commands running in Fusion's permitted execution context.
 - Design commands to be safe: validate active document, entities, units, parameters, and timeline state; use native previews where applicable. Never modify a user's CAD data during tests or without an explicit command action.

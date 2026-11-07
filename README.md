@@ -25,3 +25,7 @@ If Actions cannot be enabled yet, run the initializer locally: `python scripts/i
 - Separate English and Russian documentation and `AGENTS.md` rules for coding agents.
 
 The repository is a template, not an existing 4FusionLab product. See `docs/DEVELOPMENT.md` after scaffolding is installed.
+
+## Prepare product documentation
+
+The initializer creates starter pages, not finished product documentation. Before publishing a product, replace the starter description in **both** `README.md` and `README.ru.md` with accurate, separately written English and Russian text. Follow the [product README guidelines](https://github.com/4FusionLab/.github/blob/main/README_GUIDELINES.md): explain the user outcome and actual workflow, link real releases and support, give install steps, and state important limitations and verified platform status. Include safety warnings prominently when relevant; preserve existing examples and assets. Check links, language parity and the current license before delivery. Write documentation in English with a separate Russian version; intermediate working notes do not require translation.
