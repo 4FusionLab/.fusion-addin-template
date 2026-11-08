@@ -136,8 +136,10 @@ def initialize(root=ROOT, name='MyAddin', display_name=None, description=None, r
             project_readme(name, display_name, description, repo, russian=russian),
             encoding='utf-8',
         )
-    agents = root / 'AGENTS.md'
-    agents.write_text(agents.read_text(encoding='utf-8').replace('FusionAddin', name), encoding='utf-8')
+    for filename in ('AGENTS.md', 'AGENTS.ru.md'):
+        agents = root / filename
+        if agents.exists():
+            agents.write_text(agents.read_text(encoding='utf-8').replace('FusionAddin', name), encoding='utf-8')
     initializer = root / '.github/workflows/initialize.yml'
     if initializer.exists():
         initializer.unlink()

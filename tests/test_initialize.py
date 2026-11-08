@@ -28,7 +28,7 @@ class InitializationTests(unittest.TestCase):
             (root / 'scripts').mkdir()
             (root / '.github/workflows').mkdir(parents=True)
             for filename in ('.fusion-addin.json', 'README.md', 'README.ru.md',
-                             'AGENTS.md', 'GitVersion.yml'):
+                             'AGENTS.md', 'AGENTS.ru.md', 'GitVersion.yml'):
                 shutil.copyfile(ROOT / filename, root / filename)
             shutil.copyfile(ROOT / '.github/release-paths.txt',
                             root / '.github/release-paths.txt')
@@ -38,6 +38,8 @@ class InitializationTests(unittest.TestCase):
             self.assertEqual(result['name'], 'ShapeMaker')
             self.assertEqual(validate(root), ('ShapeMaker', True))
             self.assertFalse((root / 'FusionAddin').exists())
+            self.assertIn('ShapeMaker/', (root / 'AGENTS.ru.md').read_text(encoding='utf-8'))
+            self.assertNotIn('FusionAddin', (root / 'AGENTS.ru.md').read_text(encoding='utf-8'))
             self.assertTrue((root / 'ShapeMaker/ShapeMaker.py').is_file())
             self.assertFalse((root / '.github/workflows/initialize.yml').exists())
             self.assertNotEqual(result['manifest_id'], '00000000-0000-4000-8000-000000000000')
